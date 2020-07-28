@@ -22,3 +22,10 @@
 3. 使用watch mode(观察者模式) 添加一个用于启动 webpack watch mode 的 npm scripts: watch 缺点：改正后需要刷新浏览器
 4. 使用webpack-dev-server(webpack-dev-server) 添加一个用于启动 webpack-dev-server 的 npm scripts: start
 5. 使用webpack-dev-middleware(express webpack-dev-middleware) 添加一个server.js文件配置，再添加一个用于启动 webpack-dev-middleware 的 npm scripts: server
+
+## 代码分离（entry手动分离、SplitChunksPlugin 去重和分离 chunk、通过内联函数调用分离代码）
+1. 入口起点(entry point)
+2. 防止重复(SplitChunksPlugin、mini-css-extract-plugin)
+3. 动态导入
+4. 预获取/预加载模块
+5. bundle 分析
