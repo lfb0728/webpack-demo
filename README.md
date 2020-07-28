@@ -25,7 +25,12 @@
 
 ## 代码分离（entry手动分离、SplitChunksPlugin 去重和分离 chunk、通过内联函数调用分离代码）
 1. 入口起点(entry point)
-2. 防止重复(SplitChunksPlugin、mini-css-extract-plugin)
+2. 防止重复(SplitChunksPlugin、mini-css-extract-plugin) SplitChunksPlugin 可以用于将模块分离到单独的 bundle 中
 3. 动态导入
 4. 预获取/预加载模块
 5. bundle 分析
+
+## 缓存
+1. 输出文件的文件名 [contenthash] 对比变化: 文件没有修改，再次构建文件名会保持不变
+2. 提取引导模板 可以通过SplitChunkPlugin插件的cacheGroups来将第三方库(library)（例如 lodash 或 react）提取到单独的 vendor chunk 文件中
+3. 模块标识符 optimization.moduleIds 设置为 'hashed'：第三方vendor的hash都保持一致
