@@ -1,22 +1,16 @@
 import _ from 'lodash';
-import './style.css';
-import Icon from './icon.png';
-import Data from './data.xml';
+import printMe from './print';
 
 function component() {
     const element = document.createElement('div');
-  
-    // lodash，现在通过一个 script 引入
+    const btn = document.createElement('button');
+
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.classList.add('hello');
 
-    // 将图像添加到我们已经存在的 div 中
-    const myIcon = new Image();
-    myIcon.src = Icon;
+    btn.innerHTML = '点击这里，然后查看 console！';
+    btn.onclick = printMe;
 
-    element.appendChild(myIcon);
-
-    console.log(Data);
+    element.appendChild(btn);
 
     return element;
   }
