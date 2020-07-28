@@ -1,31 +1,30 @@
-const path = require("path");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
 
 module.exports = {
-  mode: "development",
-  entry: "./src/index.js",
+  mode: 'development',
+  entry: './src/index.js',
   output: {
-    filename: "[name].[contenthash].js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'webpack-numbers.js',
+    library: 'webpackNumbers',
+    libraryTarget: 'umd'
   },
-  plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      title: "缓存",
-    }),
-  ],
+  devtool: 'source-map',
   optimization: {
-    moduleIds: 'hashed',
-    runtimeChunk: "single",
-    splitChunks: {
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: "vendors",
-          chunks: "all",
-        },
-      },
-    },
+    runtimeChunk: true
   },
-};
+  // externals: {
+  //   lodash: {
+  //     commonjs: 'lodash',
+  //     commonjs2: 'lodash',
+  //     amd: 'lodash',
+  //     root: '_',
+  //   },
+  // },
+  externals: [
+    'library/one',
+    'library/two',
+    // 匹配以 "library/" 开始的所有依赖
+    /^library\/.+$/,
+  ]
+}
