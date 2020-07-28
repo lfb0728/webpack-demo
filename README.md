@@ -84,3 +84,8 @@
     - Babel 最小化项目中的 preset/plugin 数量。
     - TypeScript 在单独的进程中使用 fork-ts-checker-webpack-plugin 进行类型检查。 配置 loader 跳过类型检查。使用 ts-loader 时，设置 happyPackMode: true / transpileOnly: true。
     - Sass node-sass 中有个来自 Node.js 线程池的阻塞线程的 bug。 当使用 thread-loader 时，需要设置 workerParallelJobs: 2。
+
+## 模块热替换
+1. 启用 HMR
+2. 通过 Node.js API
+3. HMR 加载样式

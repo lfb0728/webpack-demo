@@ -1,30 +1,32 @@
-const path = require('path');
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  mode: 'development',
-  entry: './src/index.js',
+  entry: {
+    app: "./src/index.js",
+  },
+  devtool: "inline-source-map",
+  devServer: {
+    contentBase: "./dist",
+    hot: true,
+  },
+  module: {
+    rules: [
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      }
+    ]
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: "Hot Module Replacement",
+    }),
+  ],
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'webpack-numbers.js',
-    library: 'webpackNumbers',
-    libraryTarget: 'umd'
+    filename: "[name].bundle.js",
+    path: path.resolve(__dirname, "dist"),
   },
-  devtool: 'source-map',
-  optimization: {
-    runtimeChunk: true
-  },
-  // externals: {
-  //   lodash: {
-  //     commonjs: 'lodash',
-  //     commonjs2: 'lodash',
-  //     amd: 'lodash',
-  //     root: '_',
-  //   },
-  // },
-  externals: [
-    'library/one',
-    'library/two',
-    // 匹配以 "library/" 开始的所有依赖
-    /^library\/.+$/,
-  ]
-}
+};
